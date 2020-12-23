@@ -1,8 +1,12 @@
 import React from 'react';
 import { Row, Col, Input, Button } from 'antd';
 import styles from './Signin.module.css';
+import axios from 'axios';
 
+// class 컴포넌트에서 사용하는 createrRef 함수
 class Signin extends React.Component {
+  _password = React.createRef(); // 객체
+
   state = {
     email: '기본값',
   };
@@ -10,6 +14,8 @@ class Signin extends React.Component {
     // console.log(this.state.email);
     const regexEmail = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
     const isEmail = regexEmail.test(this.state.email);
+
+    console.log(this._password);
 
     return (
       <form>
@@ -34,17 +40,20 @@ class Signin extends React.Component {
                   <span className={styles.required}> *</span>
                 </div>
                 <div className={styles.input_area}>
-                  {/* <Input
+                  <Input
                     name="email"
-                    placeholder="email"
+                    placeholder="Email"
+                    autoComplete="email"
                     className={styles.Input}
-                  /> */}
-                  <input
+                    value={this.state.email}
+                    onChange={this.change}
+                  />
+                  {/* <input
                     type="text"
                     value={this.state.email}
                     onChange={this.change}
                   />
-                  {isEmail ? '이메일 맞음' : '이메일 아님'}
+                  {isEmail ? '이메일 맞음' : '이메일 아님'} */}
                 </div>
                 <div className={styles.email_title}>
                   Password
@@ -55,7 +64,13 @@ class Signin extends React.Component {
                     type="password"
                     autoComplete="current-password"
                     className={styles.Input}
+                    ref={this._password}
                   />
+                  {/* <input
+                    type="password"
+                    ref={this._password}
+                    onMouseOver={this._onMouseOver}
+                  /> */}
                 </div>
                 <div className={styles.button_area}>
                   <Button
@@ -63,6 +78,7 @@ class Signin extends React.Component {
                     loading={false}
                     className={styles.button}
                     onClick={this.click}
+                    disabled={!isEmail}
                   >
                     Sign In
                   </Button>
@@ -74,9 +90,44 @@ class Signin extends React.Component {
       </form>
     );
   }
+  _onMouseOver = async () => {
+    this._password.current.focus();
+  };
 
-  click = () => {
-    // console.log('clicked', this.state.email);
+  click = async() => {
+    const { email } = this.state;
+    const password = this._password.current.input.value;
+    // console.log('clicked', email, password);
+
+    // 서버에다가 이메일 패스워드 보내서 인증된 사용자인지 체크
+    // axios
+    //   .post('https://api.marktube.tv/v1/me', {
+    //     email,
+    //     password,
+    //   })
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+
+    try {
+      // 호출 시작 => 로딩시작
+      const response = await axios
+      .post('https://api.marktube.tv/v1/me', {
+        email,
+        password,
+      });
+      // 호출 완료 => 로딩 끝
+      console.log(response);
+    } catch(error) {
+      // 호출 완료 => 로딩 끝
+      console.log(error);
+    };
+  }
+      
+      
   };
 
   change = (e) => {
