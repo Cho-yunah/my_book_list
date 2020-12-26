@@ -1,7 +1,14 @@
+import { Redirect } from 'react-router-dom';
 import Signin from '../components/Signin';
+import withToken from '../hocs/withToken';
 
-export default function SigninPage() {
-  // path => 데이터로 바꿔서 무언가 처리할때
-  // auth
+function SigninPage({ token }) {
+  // console.log(props); // {unrelated props, token}
+
+  if (token !== null) {
+    return <Redirect to="/" />;
+  }
   return <Signin />;
 }
+
+export default withToken(SigninPage);

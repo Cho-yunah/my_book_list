@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, Col, Input, Button } from 'antd';
 import styles from './Signin.module.css';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
 // class 컴포넌트에서 사용하는 createrRef 함수
 class Signin extends React.Component {
@@ -128,6 +129,12 @@ class Signin extends React.Component {
       this.setState({ loading: false });
       // 호출 완료 => 로딩끝
       console.log(response.data.token);
+
+      // 토큰을 브라우저 어딘가에 저장한다.
+      localStorage.setItem('token', response.data.token);
+
+      // 페이지를 이동한다.
+      this.props.history.push('/');
     } catch (error) {
       this.setState({ loading: false });
       //  호출 완료 => 로딩끝
@@ -141,7 +148,7 @@ class Signin extends React.Component {
   };
 }
 
-export default Signin;
+export default withRouter(Signin);
 
 function sleep(ms) {
   return new Promise((resolve) => {
