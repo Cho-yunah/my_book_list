@@ -3,6 +3,7 @@ import { Row, Col, Input, Button } from 'antd';
 import styles from './Signin.module.css';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
+import { sleep } from '../utils';
 
 // class 컴포넌트에서 사용하는 createrRef 함수
 class Signin extends React.Component {
@@ -149,11 +150,3 @@ class Signin extends React.Component {
 }
 
 export default withRouter(Signin);
-
-function sleep(ms) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, ms);
-  });
-}
