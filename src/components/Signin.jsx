@@ -9,11 +9,14 @@ class Signin extends React.Component {
 
   state = {
     email: '기본값',
+    loading: false,
   };
   render() {
     // console.log(this.state.email);
-    const regexEmail = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
-    const isEmail = regexEmail.test(this.state.email);
+    const { email, loading } = this.state;
+    const isEmail = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(
+      this.state.email,
+    );
 
     console.log(this._password);
 
@@ -75,7 +78,7 @@ class Signin extends React.Component {
                 <div className={styles.button_area}>
                   <Button
                     size="large"
-                    loading={false}
+                    loading={loading}
                     className={styles.button}
                     onClick={this.click}
                     disabled={!isEmail}
@@ -94,7 +97,7 @@ class Signin extends React.Component {
     this._password.current.focus();
   };
 
-  click = async() => {
+  click = async () => {
     const { email } = this.state;
     const password = this._password.current.input.value;
     // console.log('clicked', email, password);
@@ -114,20 +117,22 @@ class Signin extends React.Component {
 
     try {
       // 호출 시작 => 로딩시작
-      const response = await axios
-      .post('https://api.marktube.tv/v1/me', {
+      this.setState({ loading: true });
+      const response = await axios.post('https://api.marktube.tv/v1/me', {
         email,
         password,
       });
-      // 호출 완료 => 로딩 끝
-      console.log(response);
-    } catch(error) {
-      // 호출 완료 => 로딩 끝
+      // sleep
+      await sleep(1000);
+
+      this.setState({ loading: false });
+      // 호출 완료 => 로딩끝
+      console.log(response.data.token);
+    } catch (error) {
+      this.setState({ loading: false });
+      //  호출 완료 => 로딩끝
       console.log(error);
-    };
-  }
-      
-      
+    }
   };
 
   change = (e) => {
@@ -137,3 +142,11 @@ class Signin extends React.Component {
 }
 
 export default Signin;
+
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, ms);
+  });
+}
