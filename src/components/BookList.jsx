@@ -4,6 +4,7 @@ import { sleep } from '../utils';
 import { LoadingOutlined, ReloadOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import BookItem from './BookItem';
+import styles from './BookList.module.css';
 
 export default class BookList extends React.Component {
   state = {
@@ -43,14 +44,32 @@ export default class BookList extends React.Component {
     // }
 
     return (
-      <div>
-        <h1>Book List{loading && <LoadingOutlined />}</h1>
-        {books.length === 0 && <p> 데이터가 없습니다.</p>}
-        {books.length !== 0 &&
-          books.map((book) => {
-            return <BookItem {...book} />;
-          })}
-      </div>
+      <>
+        <div className={styles.booklist_container}>
+          <h1 className={styles.booklist_header}>
+            MY BOOK LIST{loading && <LoadingOutlined />}
+          </h1>
+          <div className={styles.booklist_introbox}>
+            <p className={styles.booklist_intromessage}>
+              책을 읽으며 당신이 생각한것을 적어보세요
+            </p>
+            {/* 사진 찾아서 넣기 */}
+            <img
+              src="/img/Books_I've_read.png"
+              alt="Books"
+              className={styles.booklist_introimage}
+            />
+          </div>
+          <div className={styles.booklist_designbox}></div>
+          <div className={styles.booklist_itembox}>
+            {books.length === 0 && <p> 데이터가 없습니다.</p>}
+            {books.length !== 0 &&
+              books.map((book) => {
+                return <BookItem {...book} />;
+              })}
+          </div>
+        </div>
+      </>
     );
   }
 

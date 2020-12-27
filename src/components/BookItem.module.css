@@ -1,0 +1,12 @@
+.bookitem_container {
+  background-color: skyblue;
+  width: 400px;
+  height: 230px;
+  margin: 30px;
+  padding: 20px;
+}
+.bookitem_header {
+  color: orange;
+  background-color: yellow;
+  width: 300px;
+}

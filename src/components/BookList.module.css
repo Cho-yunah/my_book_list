@@ -1,0 +1,39 @@
+.booklist_container {
+  width: 1920px;
+}
+.booklist_header {
+  margin: 10px auto;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.booklist_introbox {
+  background-color: beige;
+  width: 1920px;
+  height: 300px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.booklist_intromessage {
+  display: inline-block;
+  font-size: 18px;
+  color: rgb(192, 152, 65);
+}
+.booklist_introimage {
+  width: 300px;
+  height: 400px;
+  z-index: 1;
+}
+
+.booklist_designbox {
+  height: 50px;
+  width: 1920px;
+}
+
+.booklist_itembox {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: orange;
+}
