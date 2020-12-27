@@ -1,12 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Noto+Sans+KR:wght@400;500;600;700&display=swap');
+
 .bookitem_container {
-  background-color: skyblue;
-  width: 400px;
-  height: 230px;
-  margin: 30px;
-  padding: 20px;
+  border-radius: 5px;
+  background-color: #fff8f1;
+  width: 350px;
+  height: 280px;
+  padding: 25px 20px 20px;
+  box-shadow: 2px 2px 2px #ddccb6;
+  position: relative;
+  font-family: 'Noto Sans JP', sans-serif;
+  overflow-y: auto;
 }
 .bookitem_header {
-  color: orange;
-  background-color: yellow;
+  color: #5c4b3d;
+  text-align: center;
   width: 300px;
+  font-size: 23px;
+  margin: 0;
+}
+
+.bookitem_author {
+  text-align: right;
+  color: #9b8675;
+  margin: 10px 0 0;
+}
+.bookitem_rate {
+  display: flex;
+  justify-content: flex-end;
+}
+.bookitem_message {
+  text-align: center;
+  font-size: 18px;
+  color: #5c4b3d;
+  margin: 20px 10px 10px;
+}
+
+.bookitem_sitebutton {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }

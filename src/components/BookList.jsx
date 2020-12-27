@@ -50,24 +50,34 @@ export default class BookList extends React.Component {
             MY BOOK LIST{loading && <LoadingOutlined />}
           </h1>
           <div className={styles.booklist_introbox}>
-            <p className={styles.booklist_intromessage}>
-              책을 읽으며 당신이 생각한것을 적어보세요
-            </p>
-            {/* 사진 찾아서 넣기 */}
-            <img
-              src="/img/Books_I've_read.png"
-              alt="Books"
-              className={styles.booklist_introimage}
-            />
+            <div className={styles.booklist_innerbox}>
+              <div className={styles.booklist_intromessage}>
+                <p>책을 읽으며 당신이 생각한 것을 적어보세요 </p>
+                <p className={styles.booklist_lorem}>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum
+                  cum architecto praesentium, vel minus numquam modi. Autem
+                  tempora aliquid voluptas officia, iure magnam a expedita
+                  reprehenderit neque natus sunt nesciunt.
+                </p>
+              </div>
+              <img
+                src="/img/Books_I've_read.png"
+                alt="Books"
+                className={styles.booklist_introimage}
+              />
+            </div>
           </div>
-          <div className={styles.booklist_designbox}></div>
-          <div className={styles.booklist_itembox}>
+          <section className={styles.booklist_designbox}>
+            Book Contents
+            <p className={styles.booklist_designmsg}>recommand</p>
+          </section>
+          <section className={styles.booklist_itembox}>
             {books.length === 0 && <p> 데이터가 없습니다.</p>}
             {books.length !== 0 &&
               books.map((book) => {
                 return <BookItem {...book} />;
               })}
-          </div>
+          </section>
         </div>
       </>
     );

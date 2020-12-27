@@ -1,39 +1,61 @@
 .booklist_container {
-  width: 1920px;
 }
 .booklist_header {
+  width: 1400px;
   margin: 10px auto;
-  padding: 20px 0;
-  text-align: center;
+  padding: 40px 0;
+  font-size: 35px;
+  font-weight: 600;
+  color: #a68e7a;
 }
 
 .booklist_introbox {
   background-color: beige;
-  width: 1920px;
-  height: 300px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  height: 350px;
+}
+.booklist_innerbox {
+  padding: 20px 0;
+  margin: 0 auto;
+  height: 100%;
+  width: 1400px;
+  position: relative;
 }
 .booklist_intromessage {
-  display: inline-block;
-  font-size: 18px;
-  color: rgb(192, 152, 65);
+  text-align: center;
+  width: 700px;
+  font-size: 25px;
+  color: #d19066;
+  padding: 40px 0 20px 30px;
+}
+.booklist_lorem {
+  color: #e6ba80;
 }
 .booklist_introimage {
-  width: 300px;
+  position: absolute;
+  width: 320px;
   height: 400px;
-  z-index: 1;
+  bottom: 0;
+  right: 5%;
 }
 
 .booklist_designbox {
-  height: 50px;
-  width: 1920px;
+  color: #c9b59d;
+  padding: 65px 0 30px;
+  text-align: center;
+  font-size: 25px;
+}
+.booklist_designmsg {
+  font-style: italic;
+  font-size: 20px;
+  margin: 0;
 }
 
 .booklist_itembox {
+  width: 1400px;
+  margin: 0 auto;
+  padding-bottom: 40px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  background-color: orange;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
