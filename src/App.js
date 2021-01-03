@@ -6,17 +6,23 @@ import Error from './pages/Error';
 import Signin from './pages/Signin';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
+import { Provider } from 'react-redux';
+
+//redux
+import store from './redux/store';
 
 function App() {
   return (
     <ErrorBoundary FallbackComponent={Error}>
-      <BrowserRouter>
-        <Switch>
-          <Route path="/signin" component={Signin} />
-          <Route path="/" exact component={Home} />
-          <Route component={NotFound} />
-        </Switch>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/signin" component={Signin} />
+            <Route path="/" exact component={Home} />
+            <Route component={NotFound} />
+          </Switch>
+        </BrowserRouter>
+      </Provider>
     </ErrorBoundary>
   );
 }
